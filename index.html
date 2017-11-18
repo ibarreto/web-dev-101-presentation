@@ -130,6 +130,81 @@ tag {
 				</section>
 				<section>
 					<section>
+						<h2>So what about the server side?</h2>
+					</section>
+					<section>
+						<h2>Ruby</h2>
+						<h2>Sinatra</h2>
+					</section>
+					<section>
+<div data-markdown>
+app.rb
+```ruby
+require 'sinatra'
+
+get '/' do
+  'Oh hello there!'
+end
+```
+</div>
+<div data-markdown>
+```bash
+$ ruby app.rb
+```
+</div>
+
+					</section>
+				</section>
+				<section>
+					<h2>Let's build a simple app!</h2>
+				</section>
+				<section>
+<small>
+<div data-markdown>
+```ruby
+require 'sinatra'
+
+projects = [
+  { :id => 0, :name => 'Test 1', :description => 'description 1' },
+  { :id => 1, :name => 'Test 2', :description => 'description 2' }
+]
+
+get '/' do
+  erb :index
+end
+
+get '/projects' do
+  erb :projects, :locals => { :projects => projects }
+end
+
+post '/projects' do
+  projects << { :name => params[:project_name], :description => params[:project_description] }
+  redirect('/projects')
+end
+
+get '/projects/:project_id' do
+  project = projects[params[:project_id].to_i]
+  erb :project, :locals => { :project => project }
+end
+```
+</div>
+</small>
+				</section>
+				<section>
+					<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/cb3dd9dc6afd3505c583d6de8359f34e2dc413f5" target="_blank">this</a> code</h2>
+					<p>commit cb3dd9dc6afd3505c583d6de8359f34e2dc413f5</p>
+				</section>
+				<section>
+					<section>
+							<h2>Now let's add Bootstrap to it! And some links!</h2>
+					</section>
+					<section>
+						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/cfc442e396d8808367f9781a83bdcff6102e57da" target="_blank">this</a> code</h2>
+						<p>commit cfc442e396d8808367f9781a83bdcff6102e57da</p>
+					</section>
+				</section>
+				<section>
+					<section>
 						<h3>Now I want to integrate with some third-parties.</h3>
 						<h3>What do I do?</h3>
 					</section>
@@ -177,7 +252,33 @@ GET https://api.github.com/
 ```
 </div>
 					</section>
+					<section>
+						<h3>Let's start getting repos from the GitHub API</h3>
+					</section>
+					<section>
+						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/1e4948225a1f0793cfec5add08fa20fd0acd3424" target="_blank">this</a> code</h2>
+						<p>commit 1e4948225a1f0793cfec5add08fa20fd0acd3424</p>
+					</section>
 				</section>
+				<section>
+					<section>
+						<h3>Now let's create repos using the GitHub API</h3>
+					</section>
+					<section>
+						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/314893215f923b2a0d3b2d2c0abbee400c7d48d0" target="_blank">this</a> code</h2>
+						<p>commit 314893215f923b2a0d3b2d2c0abbee400c7d48d0</p>
+					</section>
+				</section>
+				<section>
+						<section>
+							<h3>Now let's retrieve individual repos using the GitHub API</h3>
+							<h3>Also, let's use a Modal to create them!</h3>
+						</section>
+						<section>
+							<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/98b11101afbe91879337a793072ea03285b60c1a" target="_blank">this</a> code</h2>
+							<p>commit 98b11101afbe91879337a793072ea03285b60c1a</p>
+						</section>
+					</section>
 				<section>
 					<section>
 						<h3>But hey, I don't want my app to be constantly reloading pages.</h3>
@@ -191,6 +292,17 @@ GET https://api.github.com/
 console.log('hi there!');
 ```
 </div>
+					</section>
+					<section>
+						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/9045f9fb3fba60051da9ab3e7d1823526eb65c81" target="_blank">this</a> code</h2>
+						<p>commit 9045f9fb3fba60051da9ab3e7d1823526eb65c81</p>
+					</section>
+					<section>
+						<h3>But, let's go one step further</h3>
+					</section>
+					<section>
+						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/954a7faac84c8b4ce7d998473ffa8f93c616969e" target="_blank">this</a> code</h2>
+						<p>commit 954a7faac84c8b4ce7d998473ffa8f93c616969e</p>
 					</section>
 				</section>
 				<section>

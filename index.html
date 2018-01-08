@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>So you want to build a web application?</title>
+		<title>Web Dev 101</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/moon.css">
@@ -25,7 +25,7 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h2>So you want to build a web application?</h2>
+					<h2>Web Dev 101</h2>
 					<small>
 						<p>Ivan Barreto</p>
 						<p>Software Developer @ Jobber</p>
@@ -34,15 +34,29 @@
 				</section>
 				<section>
 					<section>
-						<h2>Where do I start? 🤔</h2>
+						<h2>So, what is web development? 🤔</h2>
 					</section>
 					<section>
-						<h2>The fundamentals!</h2>
+						<p>Websites</p>
+						<p>Web Applications (Facebook, Airbnb, reddit, Kayak)</p>
+						<p>static vs. dynamic</p>
+					</section>
+					<section>
+						<p>Front-end: HTML, CSS, Javascript</p>
+						<p>Back-end: Ruby, Python, (also Javascript)</p>
+						<p>Databases: Postgres, MySQL, Mongo</p>
 					</section>
 				</section>
 				<section>
 					<section>
-						<h1>HTTP</h1>
+						<p>What happens when you go to <a href="https://google.ca">https://google.ca</a>?</p>
+					</section>
+					<section>
+						<p>Request-Response Cycle</p>
+					</section>
+					<section>
+						<h2>Anatomy of a URL</h2>
+						<span style="font-size: 20px;"><span style="color: green;">http</span>://<span style="color: yellow;">www.example.com</span><span style="color: orange;">:80</span><span style="color: blue;">/path/to/myfile.html</span><span style="color: red;">?key1=value1&key2=value2</span><span style="color: purple;">#SomewhereInTheDocument</span></span>
 					</section>
 					<section>
 						<h2>HTTP METHODS/VERBS</h2>
@@ -68,7 +82,7 @@
 		&lt;title&gt;I am a title&lt;/title&gt;
 	&lt;/head&gt;
 	&lt;body&gt;
-		&lt;p&gt;Hello there!&lt;/p&gt;
+		&lt;p&gt;I am a paragraph!&lt;/p&gt;
 	&lt;/body&gt;
 &lt;/html&gt;
 ```
@@ -116,6 +130,45 @@ tag {
 ```
 </div>
 					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Javascript</h1>
+					</section>
+					<section>
+<div data-markdown>
+```js
+console.log('hi there!');
+```
+</div>
+					</section>
+					<section>
+						<h2>What's the DOM?</h2>
+					</section>
+					<section>
+						<h2>How do I interact with it?</h2>
+<div data-markdown>
+```js
+document.getElementsByTagName('body')
+```
+</div>
+					</section>
+					<section>
+						<p>some other simple examples that I have to paste to this slides</p>
+					</section>
+					<section>
+						<h3>jQuery</h3>
+<div data-markdown>
+```js
+$('body')
+```
+</div>
+					</section>
+				</section>
+				<section>
+					<p>Let's play with <a href="https://codepen.io/ibarreto/pen/pppQrx">some code</a></p>
+				</section>
+				<section>
 					<section>
 						<h3>What if I don't want to come up with a bunch of custom CSS?</h3>
 					</section>
@@ -130,13 +183,13 @@ tag {
 					</section>
 					<section>
 						<h2>...real quick</h2>
-<div data-markdown>
-```html
-&lt;head&gt;
+	<div data-markdown>
+	```html
+	&lt;head&gt;
 	&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"&gt;
-&lt;/head&gt;
-```
-</div>
+	&lt;/head&gt;
+	```
+	</div>
 					</section>
 				</section>
 				<section>
@@ -145,74 +198,38 @@ tag {
 					</section>
 					<section>
 						<h2>Ruby</h2>
-						<h2>Sinatra</h2>
+						<h2>Python</h2>
+						<h2>Go</h2>
+						<h2>(and their frameworks!)</h2>
 					</section>
 					<section>
 <div data-markdown>
-app.rb
-```ruby
-require 'sinatra'
+app.py
+```python
+from flask import Flask
+app = Flask(__name__)
 
-get '/' do
-  'Oh hello there!'
-end
+@app.route('/')
+def hi_there():
+    return 'Hi there, Web Dev 101!'
 ```
 </div>
 <div data-markdown>
 ```bash
-$ ruby app.rb
+$ export FLASK_APP=app.py
+$ flask run
+ * Running on http://127.0.0.1:5000/
 ```
 </div>
 
 					</section>
-				</section>
-				<section>
-					<h2>Let's build a simple app!</h2>
-				</section>
-				<section>
-<small>
-<div data-markdown>
-```ruby
-require 'sinatra'
-
-projects = [
-  { :id => 0, :name => 'Test 1', :description => 'description 1' },
-  { :id => 1, :name => 'Test 2', :description => 'description 2' }
-]
-
-get '/' do
-  erb :index
-end
-
-get '/projects' do
-  erb :projects, :locals => { :projects => projects }
-end
-
-post '/projects' do
-  projects << { :name => params[:project_name], :description => params[:project_description] }
-  redirect('/projects')
-end
-
-get '/projects/:project_id' do
-  project = projects[params[:project_id].to_i]
-  erb :project, :locals => { :project => project }
-end
-```
-</div>
-</small>
-				</section>
-				<section>
-					<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/cb3dd9dc6afd3505c583d6de8359f34e2dc413f5" target="_blank">this</a> code</h2>
-					<p>commit cb3dd9dc6afd3505c583d6de8359f34e2dc413f5</p>
-				</section>
-				<section>
 					<section>
-							<h2>Now let's add Bootstrap to it! And some links!</h2>
+						<p>I am going to put more backend python code in here explaining more things</p>
 					</section>
-					<section>
-						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/cfc442e396d8808367f9781a83bdcff6102e57da" target="_blank">this</a> code</h2>
-						<p>commit cfc442e396d8808367f9781a83bdcff6102e57da</p>
-					</section>
+				</section>
+				<section>
+					<h2>Frameworks</h2>
+					<p>Why do we use them?</p>
 				</section>
 				<section>
 					<section>
@@ -223,131 +240,51 @@ end
 							<h2>APIs</h2>
 					</section>
 					<section>
-						<h2>GitHub API</h2>
-<div data-markdown>
-```
-GET https://api.github.com/
-{
-  "current_user_url": "https://api.github.com/user",
-  "current_user_authorizations_html_url": "https://github.com/settings/connections/applications{/client_id}",
-  "authorizations_url": "https://api.github.com/authorizations",
-  "code_search_url": "https://api.github.com/search/code?q={query}{&page,per_page,sort,order}",
-  "commit_search_url": "https://api.github.com/search/commits?q={query}{&page,per_page,sort,order}",
-  "emails_url": "https://api.github.com/user/emails",
-  "emojis_url": "https://api.github.com/emojis",
-  "events_url": "https://api.github.com/events",
-  "feeds_url": "https://api.github.com/feeds",
-  "followers_url": "https://api.github.com/user/followers",
-  "following_url": "https://api.github.com/user/following{/target}",
-  "gists_url": "https://api.github.com/gists{/gist_id}",
-  "hub_url": "https://api.github.com/hub",
-  "issue_search_url": "https://api.github.com/search/issues?q={query}{&page,per_page,sort,order}",
-  "issues_url": "https://api.github.com/issues",
-  "keys_url": "https://api.github.com/user/keys",
-  "notifications_url": "https://api.github.com/notifications",
-  "organization_repositories_url": "https://api.github.com/orgs/{org}/repos{?type,page,per_page,sort}",
-  "organization_url": "https://api.github.com/orgs/{org}",
-  "public_gists_url": "https://api.github.com/gists/public",
-  "rate_limit_url": "https://api.github.com/rate_limit",
-  "repository_url": "https://api.github.com/repos/{owner}/{repo}",
-  "repository_search_url": "https://api.github.com/search/repositories?q={query}{&page,per_page,sort,order}",
-  "current_user_repositories_url": "https://api.github.com/user/repos{?type,page,per_page,sort}",
-  "starred_url": "https://api.github.com/user/starred{/owner}{/repo}",
-  "starred_gists_url": "https://api.github.com/gists/starred",
-  "team_url": "https://api.github.com/teams",
-  "user_url": "https://api.github.com/users/{user}",
-  "user_organizations_url": "https://api.github.com/user/orgs",
-  "user_repositories_url": "https://api.github.com/users/{user}/repos{?type,page,per_page,sort}",
-  "user_search_url": "https://api.github.com/search/users?q={query}{&page,per_page,sort,order}"
-}
-```
-</div>
-					</section>
-					<section>
-						<h3>Let's start getting repos from the GitHub API</h3>
-					</section>
-					<section>
-						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/1e4948225a1f0793cfec5add08fa20fd0acd3424" target="_blank">this</a> code</h2>
-						<p>commit 1e4948225a1f0793cfec5add08fa20fd0acd3424</p>
+						<p>Some APIs: Twilio, Twitter, Spotify</p>
+						<a href="https://codepen.io/ibarreto/pen/QaqvVB">Coinmarketcap API example</a>
 					</section>
 				</section>
 				<section>
 					<section>
-						<h3>Now let's create repos using the GitHub API</h3>
+						<h3>Where is web development going? What are the most recent trends?</h3>
 					</section>
 					<section>
-						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/314893215f923b2a0d3b2d2c0abbee400c7d48d0" target="_blank">this</a> code</h2>
-						<p>commit 314893215f923b2a0d3b2d2c0abbee400c7d48d0</p>
-					</section>
-				</section>
-				<section>
-						<section>
-							<h3>Now let's retrieve individual repos using the GitHub API</h3>
-							<h3>Also, let's use a Modal to create them!</h3>
-						</section>
-						<section>
-							<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/98b11101afbe91879337a793072ea03285b60c1a" target="_blank">this</a> code</h2>
-							<p>commit 98b11101afbe91879337a793072ea03285b60c1a</p>
-						</section>
-					</section>
-				<section>
-					<section>
-						<h3>But hey, I don't want my app to be constantly reloading pages.</h3>
-						<h3></h3>
-						<h3>What do I do?</h3>
+						<h3>Before:</h3>
+						<ul><li>Render views server-side</li></ul>
+						<h3>Now:</h3>
+						<ul>
+							<li>Render views client-side</li>
+							<li>Hybrid approach</li>
+						</ul>
 					</section>
 					<section>
-						<h2>Javascript to the rescue!</h2>
-<div data-markdown>
-```js
-console.log('hi there!');
-```
-</div>
+						<h3>JS Libraries and Frameworks</h3>
+						<ul>
+							<li>React</li>
+							<li>Angular</li>
+							<li>Vue</li>
+							<li>Ember</li>
+						</ul>
 					</section>
 					<section>
-						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/9045f9fb3fba60051da9ab3e7d1823526eb65c81" target="_blank">this</a> code</h2>
-						<p>commit 9045f9fb3fba60051da9ab3e7d1823526eb65c81</p>
+						<h3>Progressive Web Apps</h3>
 					</section>
-					<section>
-						<h3>But, let's go one step further</h3>
-					</section>
-					<section>
-						<h2>Show <a href="https://github.com/ibarreto/projects-demo-app/commit/954a7faac84c8b4ce7d998473ffa8f93c616969e" target="_blank">this</a> code</h2>
-						<p>commit 954a7faac84c8b4ce7d998473ffa8f93c616969e</p>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Debugging</h2>
-					</section>
-					<section>
-						<h2>For ruby, try "pry"</h2>
-<div data-markdown>
-```ruby
-require 'pry'
-
-def some_function
-	...
-	binding.pry
-	...
-end
-```
-</div>
-					</section>
-				</section>
-				<section>
-					<h2>Questions?</h2>
 				</section>
 				<section>
 					<h3>Resources</h3>
-					<p><a href="https://github.com/ibarreto/projects-demo-app">Project Demo App</a></p>
 					<p><a href="https://getbootstrap.com">Bootstrap</a></p>
 					<p><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web">Mozilla Intro Guide</a></p>
 					<p><a href="https://hostingfacts.com/wp-content/uploads/2016/06/HTML_CHEAT_SHEET_PNG.png">HTML Cheat Sheet</a></p>
 					<p><a href="https://codepen.io/davidicus/details/trhme">Javascript Cheat Sheet</a></p>
 				</section>
 				<section>
+					<h2>Go Build!</h2>
+				</section>
+				<section>
 					<h2>Thank you!</h2>
+				</section>
+				<section>
+					<h2>Questions?</h2>
 				</section>
 			</div>
 		</div>
